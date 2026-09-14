@@ -46,9 +46,6 @@ jobs:
       - name: Fix MainActivity context
         run: |
           sed -i '50s/\bthis\b/this@MainActivity/g' "$PROJECT_DIR/app/src/main/java/com/example/jarvisai/MainActivity.kt"
-                - name: Fix hintTextColor
-        run: |
-          sed -i '50s/^/\/\/ /' "$PROJECT_DIR/app/src/main/java/com/example/jarvisai/MainActivity.kt"
       - name: Build APK
         run: |
           cd "$PROJECT_DIR"
