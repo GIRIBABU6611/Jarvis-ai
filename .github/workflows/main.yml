@@ -43,7 +43,9 @@ jobs:
         run: |
           sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' "$PROJECT_DIR/app/build.gradle.kts"
           sed -i 's/jvmTarget = "1.8"/jvmTarget = "17"/g' "$PROJECT_DIR/app/build.gradle.kts"
-
+      - name: Fix MainActivity context
+        run: |
+          sed -i '50s/\bthis\b/this@MainActivity/g' "$PROJECT_DIR/app/src/main/java/com/example/jarvisai/MainActivity.kt"
       - name: Build APK
         run: |
           cd "$PROJECT_DIR"
