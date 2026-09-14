@@ -39,6 +39,11 @@ jobs:
           PROJECT_DIR=$(dirname "$(find project -name settings.gradle.kts -print -quit)")
           echo "PROJECT_DIR=$PROJECT_DIR" >> $GITHUB_ENV
 
+      - name: Fix Java 17 compatibility
+        run: |
+          sed -i 's/JavaVersion.VERSION_1_8/JavaVersion.VERSION_17/g' "$PROJECT_DIR/app/build.gradle.kts"
+          sed -i 's/jvmTarget = "1.8"/jvmTarget = "17"/g' "$PROJECT_DIR/app/build.gradle.kts"
+
       - name: Build APK
         run: |
           cd "$PROJECT_DIR"
